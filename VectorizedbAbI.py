@@ -37,7 +37,7 @@ class VectorizedbAbI:
             special_first=True
         )
 
-        self.vocab.set_default_index(self.train_vocab['<unk>'])
+        self.vocab.set_default_index(self.vocab['<unk>'])
 
 
         # self.train_vocab = build_vocab_from_iterator(
