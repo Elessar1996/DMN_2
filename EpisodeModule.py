@@ -58,5 +58,5 @@ class EpisodeModule(nn.Module):
             h = h_new
             e = h_new
             # m = self.memory_gru(m, e)[0]
-            m = self.memory_mha(m, e, e)[0]
+            m = self.memory_mha(m, e, e)
         return m

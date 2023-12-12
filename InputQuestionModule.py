@@ -33,8 +33,11 @@ class InputQuestionModule(nn.Module):
 
     def forward(self, story, question):
 
-        embedded_story = self.mha(story, story, story)[0]
-        embedded_question = self.mha(question, question, question)[0]
+        story = self.embedding(story)
+        question = self.embedding(question)
+
+        embedded_story = self.mha(story, story, story)
+        embedded_question = self.mha(question, question, question)
         # inped_story = self.story_rnn(self.embedding(story))[0]
         # inped_question = self.question_rnn(self.embedding(question))[0]
 
