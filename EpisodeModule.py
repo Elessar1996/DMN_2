@@ -17,10 +17,15 @@ class EpisodeModule(nn.Module):
             num_layers=1,
             batch_first=True
         )
-        self.memory_gru = nn.GRU(
-            input_size=embedding_size,
-            hidden_size=embedding_size,
-            num_layers=1,
+        # self.memory_gru = nn.GRU(
+        #     input_size=embedding_size,
+        #     hidden_size=embedding_size,
+        #     num_layers=1,
+        #     batch_first=True
+        # )
+        self.memory_mha = nn.MultiheadAttention(
+            num_heads=5,
+            embed_dim=embedding_size,
             batch_first=True
         )
 
@@ -52,6 +57,6 @@ class EpisodeModule(nn.Module):
                 h_new = g * self.episode_gru(facts, h)[1] + (1 - g) * h
             h = h_new
             e = h_new
-            m = self.memory_gru(m, e)[0]
-
+            # m = self.memory_gru(m, e)[0]
+            m = self.memory_mha(m, e, e)
         return m

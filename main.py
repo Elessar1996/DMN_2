@@ -7,6 +7,9 @@ from utils import *
 from MemoryModule import MemoryModule
 from AnswerModule import AnswerModule
 
+
+
+
 data_path = 'data'
 
 task_ids = [3]
@@ -18,7 +21,7 @@ data_pipe = VectorizedbAbI(
 train_datapipe = data_pipe.train_data_pipe
 test_datapipe = data_pipe.test_data_pipe
 
-inp_module = InputQuestionModule(vocab_size=len(data_pipe.train_vocab.get_itos()),
+inp_module = InputQuestionModule(vocab_size=len(data_pipe.vocab.get_itos()),
                                  embedding_dim=50,
                                  padding_idx=0)
 midd_numbers = []
